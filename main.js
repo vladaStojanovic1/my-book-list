@@ -22,13 +22,12 @@ class UI {
                 isbn: '349359'
             }
         ];
-
         const books = StoreBooks;
-
         books.forEach((book) => {
             return UI.addBookToList(book);
         })
     }
+
     static addBookToList(book) {
         const list = document.querySelector('#book-list');
 
@@ -48,7 +47,12 @@ class UI {
         document.querySelector('#title').value = '';
         document.querySelector('#author').value = '';
         document.querySelector('#isbn').value = '';
+    }
 
+    static deleteBook(el) {
+        if (el.classList.contains('delete')) {
+            confirm('Are you sure', el.parentElement.parentElement.remove());
+        }
     }
 }
 
@@ -76,4 +80,9 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
     //Clear fields
     UI.clearFields();
 })
+
 // Event: Remove a Book
+document.querySelector('#book-list').addEventListener('click', (e) => {
+    console.log(e.target);
+    UI.deleteBook(e.target);
+})
