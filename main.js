@@ -55,6 +55,11 @@ class UI {
             confirm('Are you sure', el.parentElement.parentElement.remove());
         }
     }
+
+    static animateButton() {
+        let btn = document.querySelector('.btn');
+        btn.classList.add('animated', 'shake');
+    }
 }
 
 // Store CLass: Handles Storage
@@ -86,6 +91,8 @@ class Store {
         });
         localStorage.setItem('books', JSON.stringify(books));
     }
+
+
 }
 
 // Event: Display Books
@@ -120,11 +127,16 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 
         //Clear fields
         UI.clearFields();
+
+        // Submit btn animated
+        UI.animateButton();
     }
 })
 
 // Event: Remove a Book
 document.querySelector('#book-list').addEventListener('click', (e) => {
+
+
 
     //Remove book from UI
     console.log(e.target);
